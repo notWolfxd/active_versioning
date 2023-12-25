@@ -29,7 +29,7 @@ module Historical
   # See revert_to! method for the method that will handle updating
   # the model in the database.
   def revert_to(version: previous_version, force: false, user: nil)
-    return raise ActiveVersioning::NilParameterError, "missing a parameter, provided paramters: version? #{version.nil?}"
+    return raise ActiveVersioning::NilParameterError, "missing a parameter, provided paramters: version? #{version.nil?}"  if version.nil?
     return raise ActiveVersioning::MismatchError, "provided version's foreign key value does not match this object's id" if id != version[self.class.versioned_foreign_key]
 
     if force && user
@@ -57,7 +57,7 @@ module Historical
   # See undo! method for the method that will handle updating
   # the model in the database.
   def undo(version: previous_version, force: false, user: nil)
-    return raise ActiveVersioning::NilParameterError, "missing a parameter, provided paramters: version? #{version.nil?}"
+    return raise ActiveVersioning::NilParameterError, "missing a parameter, provided paramters: version? #{version.nil?}" if version.nil?
     return raise ActiveVersioning::MismatchError, "provided version's foreign key value does not match this object's id" if id != version[self.class.versioned_foreign_key]
 
     if force && user
