@@ -1,4 +1,4 @@
-module ActiveVersioning::ModelVersions
+module ModelVersions
   # Retrieve all of the versions for a model
   #
   # Usage: Model.find(1).versions

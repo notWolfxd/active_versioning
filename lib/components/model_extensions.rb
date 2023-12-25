@@ -1,4 +1,4 @@
-module ActiveVersioning::ModelExtensions
+module ModelExtensions
   # The class that holds a specific model's versions
   #
   # @params class_name: String, a model name

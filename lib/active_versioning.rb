@@ -6,9 +6,9 @@ module ActiveVersioning
   class ComparisonError < StandardError ; end
 
   def self.included(base)
-    base.extend(ActiveVersioning::ModelExtensions)
+    base.extend(ModelExtensions)
   end
 
-  extend ActiveVersioning::Historical
-  extend ActiveVersioning::ModelVersions
+  extend Historical
+  extend ModelVersions
 end

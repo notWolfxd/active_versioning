@@ -1,4 +1,4 @@
-module ActiveVersioning::Historical
+module Historical
   # Returns differences between the provided version and
   # the current version. Used when undoing a specific
   # version's changes
