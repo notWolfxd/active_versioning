@@ -29,7 +29,8 @@ module Historical
   # See revert_to! method for the method that will handle updating
   # the model in the database.
   def revert_to(version: previous_version, force: false, user: nil)
-    return self if id != version[self.class.versioned_foreign_key]
+    return raise ActiveVersioning::NilParameterError, "missing a parameter, provided paramters: version? #{version.nil?}"
+    return raise ActiveVersioning::MismatchError, "provided version's foreign key value does not match this object's id" if id != version[self.class.versioned_foreign_key]
 
     if force && user
       self.class.create_version(version, user) if !is_identical_version?(version, "revert")
@@ -56,7 +57,8 @@ module Historical
   # See undo! method for the method that will handle updating
   # the model in the database.
   def undo(version: previous_version, force: false, user: nil)
-    return self if id != version[self.class.versioned_foreign_key]
+    return raise ActiveVersioning::NilParameterError, "missing a parameter, provided paramters: version? #{version.nil?}"
+    return raise ActiveVersioning::MismatchError, "provided version's foreign key value does not match this object's id" if id != version[self.class.versioned_foreign_key]
 
     if force && user
       self.class.create_version(version, user) if !is_identical_version?(version, "undo")
@@ -80,6 +82,7 @@ module Historical
   # around determining the new version of the model after the
   # version's changes are reverted.
   def revert_to!(version: previous_version, user: nil)
+    raise ActiveVersioning::NilParameterError, "missing a parameter, provided parameters: version? #{version.nil?}, user? #{user.nil?}"
     return if version.nil? || user.nil?
 
     revert_to(version, true, user)
@@ -97,6 +100,7 @@ module Historical
   # around determining the new version of the model after the
   # version's changes are undone.
   def undo!(version: previous_version, user: nil)
+    raise ActiveVersioning::NilParameterError, "missing a parameter, provided parameters: version? #{version.nil?}, user? #{user.nil?}"
     return if version.nil? || user.nil?
 
     undo(version, true, user)
