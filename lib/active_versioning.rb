@@ -9,6 +9,6 @@ module ActiveVersioning
     base.extend(ModelExtensions)
   end
 
-  extend Historical
-  extend ModelVersions
+  include Historical
+  include ModelVersions
 end
