@@ -59,7 +59,7 @@ module Historical
     return self if id != version[self.class.versioned_foreign_key]
 
     if force && user
-      self.class.create_version(version, user) if !is_identical_version(version, "undo")
+      self.class.create_version(version, user) if !is_identical_version?(version, "undo")
     end
 
     diff(version).each do |attr, old_value, new_value|

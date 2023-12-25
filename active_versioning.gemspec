@@ -2,7 +2,7 @@ require_relative "lib/version"
 
 Gem::Specification.new do |spec|
   spec.name = "active_versioning"
-  spec.version = ActiveVersioning::VERSION
+  spec.version = Version::VERSION
   spec.authors = ["notWolfxd", "Winter"]
   spec.email = ["nyx.justink@gmail.com"]
 
@@ -24,5 +24,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency("minitest", ["~> 5.15"])
   spec.add_development_dependency("rake", ["~> 13"])
-  spec.add_development_dependency("active_record", ["~> 7"])
+  spec.add_development_dependency("activerecord", ["~> 7"])
+  spec.add_development_dependency("rspec")
+  spec.add_development_dependency("factory_bot")
 end
